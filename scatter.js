@@ -1,5 +1,9 @@
 var directoryPromise = d3.json("classData.json");
 
+var getIMG = function(image){
+    return "imgs/"+image.picture;
+}
+
 var initGraph = function(penguins){
     var screen = {width:600, height:600}
     d3.select("svg")
@@ -15,7 +19,7 @@ var yScale = d3.scaleLinear()
 .range([screen.height,0])
 
 var drawPlot = function(penguins, screen, xScale, yScale){
-    d3.select("svg")
+    d3.select("#graph")
     .selectAll("circle")
     .data(penguins)
     .enter()
@@ -28,6 +32,19 @@ var drawPlot = function(penguins, screen, xScale, yScale){
     })
     .attr("r", 5)
     .attr("fill", "red")
+    
+   .on("mouseenter", function(penguins){
+        console.log("hovering");
+        var xPos = d3.event.pageX;
+        var yPos = d3.event.pageY;
+        d3.select("#tooltip")
+        .classed("hidden", false)
+        .style("top", yPos+"px")
+        .style("left", xPos+"px")
+        
+        d3.select("#tooltip #img img")
+        .attr("src", getIMG(penguins))
+    })
 }
 drawPlot(penguins, screen, xScale, yScale);
 }

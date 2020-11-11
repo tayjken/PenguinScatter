@@ -1,12 +1,21 @@
 <html>
     <head>
         <title> Penguins </title>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
+        
         <link href="data.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <h1> The x-axis is the Homework Means and the y-axis is the grade on the Final.</h1>
-        <svg></svg>
+        <svg id="graph">
+        
+        
+        </svg>
+        
+        <div class="hidden" id="tooltip">
+        <div id="img"><img /></div>
+        </div>
+        
+        <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="classData.json"></script>
         <script src="scatter.js"></script>
     </body>
